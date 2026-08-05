@@ -1,14 +1,15 @@
+import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
-import '../theme/app_color_scheme.dart';
+
 
 /// Shown for any tab whose real screen hasn't been built yet.
 /// Delete each usage of this as you build out Stock/Orders/Reports/Alerts —
 /// it's a stand-in, not a permanent screen.
-class ComingSoonScreen extends StatelessWidget {
+class AlertScreen extends StatelessWidget {
   final String title;
   final IconData icon;
 
-  const ComingSoonScreen({super.key, required this.title, required this.icon});
+  const AlertScreen({super.key, required this.title, required this.icon});
 
   @override
   Widget build(BuildContext context) {

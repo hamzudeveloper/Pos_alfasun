@@ -191,11 +191,7 @@ class _LogoBadge extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(18),
-        child: AppImage.network(
-          'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png',
-          width: 64,
-          height: 64,
-        ),
+        child: AppImage.asset('assets/profile.jpg', width: 64, height: 64),
       ),
     );
   }

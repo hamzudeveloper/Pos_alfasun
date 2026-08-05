@@ -1,6 +1,9 @@
-import 'package:alfasun_pos/screens/coming_soon_screen.dart';
-import 'package:alfasun_pos/screens/dashboard/widgets/app_bottom_nav_bar.dart';
-import 'package:alfasun_pos/screens/dashboard/widgets/manager_dashboard_screen.dart';
+import 'package:alfasun_pos/Screens/Alerts/Presentation/alert_screen.dart';
+import 'package:alfasun_pos/Screens/Orders/Presentation/order_screen.dart';
+import 'package:alfasun_pos/Screens/Reports/Presentation/reports_screen.dart';
+import 'package:alfasun_pos/Screens/Stock/Presentation/stock_screen.dart';
+import 'package:alfasun_pos/Screens/Dashboard/widgets/app_bottom_nav_bar.dart';
+import 'package:alfasun_pos/Screens/Dashboard/widgets/manager_dashboard_screen.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,10 +35,10 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen> {
 
     final tabs = [
       ManagerDashboardScreen(onViewLowStock: () => _goToTab(1)), // Home -> jumps to Stock
-      const ComingSoonScreen(title: 'Stock', icon: Icons.inventory_2_outlined),
-      const ComingSoonScreen(title: 'Orders', icon: Icons.receipt_long_outlined),
-      const ComingSoonScreen(title: 'Reports', icon: Icons.bar_chart_rounded),
-      const ComingSoonScreen(title: 'Alerts', icon: Icons.notifications_none_rounded),
+      const StockScreen(title: 'Stock', icon: Icons.inventory_2_outlined),
+      const OrderScreen(title: 'Orders', icon: Icons.receipt_long_outlined),
+      const ReportsScreen(title: 'Reports', icon: Icons.bar_chart_rounded),
+      const AlertScreen(title: 'Alerts', icon: Icons.notifications_none_rounded),
     ];
 
     return Scaffold(
