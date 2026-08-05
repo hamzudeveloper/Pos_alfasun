@@ -42,9 +42,9 @@ class PinEntryScreen extends ConsumerWidget {
     final role = ref.read(selectedRoleProvider);
 
     if (pin == demoPin) {
-     Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const dashboard()),
-      );
+      Navigator.of(
+        context,
+      ).pushReplacement(MaterialPageRoute(builder: (_) => const dashboard()));
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Logged in as ${_roleLabel(role)} ✅')),
       );
@@ -215,11 +215,17 @@ class dashboard extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: const Center(
-        child: Text(
-          'Dashboard Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Dashboard Screen',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Icon(Icons.dashboard, size: 100, color: Colors.blue),
+          ],
         ),
-      )
+      ),
     );
   }
 }
