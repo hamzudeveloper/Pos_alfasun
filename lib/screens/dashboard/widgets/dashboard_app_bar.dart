@@ -58,16 +58,22 @@ class DashboardAppBar extends ConsumerWidget {
         const SizedBox(width: 8),
         _CircleIconButton(
           icon: Icons.notifications_none_rounded,
-          badgeCount: 3,
+          badgeCount: 100,
+          onTap: () {
+            Navigator.pushNamed(context, '/notifications');
+          },
         ),
         const SizedBox(width: 8),
         CircleAvatar(
           radius: 17,
           backgroundColor: colors.primary,
-          child: AppImage.asset(
-            'assets/images/profile_placeholder.png',
-            width: 30,
-            height: 30,
+          child: Text(
+            managerName.isNotEmpty ? managerName[0].toUpperCase() : '',
+            style: const TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
         ),
       ],
@@ -112,7 +118,7 @@ class _CircleIconButton extends StatelessWidget {
                 ),
                 constraints: const BoxConstraints(minWidth: 15, minHeight: 15),
                 child: Text(
-                  '$badgeCount',
+                  '$badgeCount'.codeUnits.length > 2 ? '99+' : '$badgeCount',
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,

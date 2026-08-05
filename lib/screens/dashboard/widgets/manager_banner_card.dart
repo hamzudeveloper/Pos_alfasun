@@ -39,7 +39,7 @@ class ManagerBannerCard extends StatelessWidget {
               Text(
                 'MANAGER DASHBOARD',
                 style: TextStyle(
-                  color: Color(0xFF4ADE80),
+                  color: Colors.white.withValues(alpha: 0.85),
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 1,

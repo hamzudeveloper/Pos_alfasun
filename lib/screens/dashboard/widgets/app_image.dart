@@ -44,15 +44,15 @@ class AppImage extends StatelessWidget {
     this.width,
     this.height,
     this.fit = BoxFit.cover,
-    this.shape = ImageShape.rectangle,
+    this.shape = ImageShape.circle,
     this.borderRadius = 12,
     this.backgroundColor = AppColors.cardBackground,
     this.placeholder,
     this.errorWidget,
-  })  : _sourceType = sourceType,
-        _path = path,
-        _file = file,
-        _bytes = bytes;
+  }) : _sourceType = sourceType,
+       _path = path,
+       _file = file,
+       _bytes = bytes;
 
   /// Image coming from a URL, e.g. a product photo stored in the cloud.
   const AppImage.network(
@@ -66,17 +66,17 @@ class AppImage extends StatelessWidget {
     Widget? placeholder,
     Widget? errorWidget,
   }) : this._(
-          sourceType: _ImageSourceType.network,
-          path: url,
-          width: width,
-          height: height,
-          fit: fit,
-          shape: shape,
-          borderRadius: borderRadius,
-          backgroundColor: backgroundColor,
-          placeholder: placeholder,
-          errorWidget: errorWidget,
-        );
+         sourceType: _ImageSourceType.network,
+         path: url,
+         width: width,
+         height: height,
+         fit: fit,
+         shape: shape,
+         borderRadius: borderRadius,
+         backgroundColor: backgroundColor,
+         placeholder: placeholder,
+         errorWidget: errorWidget,
+       );
 
   /// Image bundled with the app, e.g. assets/images/logo.png
   /// (remember to declare the assets folder in pubspec.yaml)
@@ -90,16 +90,16 @@ class AppImage extends StatelessWidget {
     Color backgroundColor = AppColors.cardBackground,
     Widget? errorWidget,
   }) : this._(
-          sourceType: _ImageSourceType.asset,
-          path: assetPath,
-          width: width,
-          height: height,
-          fit: fit,
-          shape: shape,
-          borderRadius: borderRadius,
-          backgroundColor: backgroundColor,
-          errorWidget: errorWidget,
-        );
+         sourceType: _ImageSourceType.asset,
+         path: assetPath,
+         width: width,
+         height: height,
+         fit: fit,
+         shape: shape,
+         borderRadius: borderRadius,
+         backgroundColor: backgroundColor,
+         errorWidget: errorWidget,
+       );
 
   /// Image picked from the device, e.g. a photo taken with the camera
   /// (common for "add product photo" or "cashier profile picture" flows)
@@ -113,16 +113,16 @@ class AppImage extends StatelessWidget {
     Color backgroundColor = AppColors.cardBackground,
     Widget? errorWidget,
   }) : this._(
-          sourceType: _ImageSourceType.file,
-          file: file,
-          width: width,
-          height: height,
-          fit: fit,
-          shape: shape,
-          borderRadius: borderRadius,
-          backgroundColor: backgroundColor,
-          errorWidget: errorWidget,
-        );
+         sourceType: _ImageSourceType.file,
+         file: file,
+         width: width,
+         height: height,
+         fit: fit,
+         shape: shape,
+         borderRadius: borderRadius,
+         backgroundColor: backgroundColor,
+         errorWidget: errorWidget,
+       );
 
   /// Image already in memory as raw bytes, e.g. decoded from a barcode/receipt scan
   const AppImage.memory(
@@ -135,16 +135,16 @@ class AppImage extends StatelessWidget {
     Color backgroundColor = AppColors.cardBackground,
     Widget? errorWidget,
   }) : this._(
-          sourceType: _ImageSourceType.memory,
-          bytes: bytes,
-          width: width,
-          height: height,
-          fit: fit,
-          shape: shape,
-          borderRadius: borderRadius,
-          backgroundColor: backgroundColor,
-          errorWidget: errorWidget,
-        );
+         sourceType: _ImageSourceType.memory,
+         bytes: bytes,
+         width: width,
+         height: height,
+         fit: fit,
+         shape: shape,
+         borderRadius: borderRadius,
+         backgroundColor: backgroundColor,
+         errorWidget: errorWidget,
+       );
 
   Widget _defaultPlaceholder() {
     return Container(

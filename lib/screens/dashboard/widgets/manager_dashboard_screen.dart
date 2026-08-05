@@ -1,85 +1,71 @@
+import 'package:alfasun_pos/providers/dashboard_provider.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../providers/dashboard_provider.dart';
-import 'app_bottom_nav_bar.dart';
-import 'dashboard_app_bar.dart';
-import 'low_stock_alert_card.dart';
-import 'low_stock_notice_bar.dart';
-import 'manager_banner_card.dart';
-import 'quick_actions_card.dart';
-import 'sales_trend_card.dart';
-import 'stats_grid.dart';
+import '../widgets/dashboard_app_bar.dart';
+import '../widgets/low_stock_alert_card.dart';
+import '../widgets/low_stock_notice_bar.dart';
+import '../widgets/manager_banner_card.dart';
+import '../widgets/quick_actions_card.dart';
+import '../widgets/sales_trend_card.dart';
+import '../widgets/stats_grid.dart';
 
-class ManagerDashboardScreen extends ConsumerStatefulWidget {
-  const ManagerDashboardScreen({super.key});
+/// IMPORTANT: this is now just the Home TAB's CONTENT — no Scaffold, no
+/// bottom nav bar. Those live one level up, in MainShellScreen, which is
+/// what actually owns tab-switching. This widget only knows how to render
+/// the dashboard; it has no idea it's sitting inside a tab bar at all.
+///
+/// [onViewLowStock] lets the parent (the shell) decide what happens when
+/// the user taps "View" on the low-stock banner — e.g. switch to the Stock
+/// tab — without this widget needing to know about tab indices itself.
+class ManagerDashboardScreen extends ConsumerWidget {
+  final VoidCallback? onViewLowStock;
+
+  const ManagerDashboardScreen({super.key, this.onViewLowStock});
 
   @override
-  ConsumerState<ManagerDashboardScreen> createState() =>
-      _ManagerDashboardScreenState();
-}
-
-class _ManagerDashboardScreenState
-    extends ConsumerState<ManagerDashboardScreen> {
-  int _navIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.appColors;
-    // Watching dashboardProvider gives us an AsyncValue<DashboardEntity>.
-    // Because dashboardProvider watches salesTrendRangeProvider internally,
-    // this whole screen automatically rebuilds with fresh data whenever the
-    // user taps Today/Week/Month — no manual refresh call needed anywhere.
     final dashboardAsync = ref.watch(dashboardProvider);
 
-    return Scaffold(
-      backgroundColor: colors.background,
-      bottomNavigationBar: AppBottomNavBar(
-        currentIndex: _navIndex,
-        onTap: (index) => setState(() => _navIndex = index, ),
+    return dashboardAsync.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stackTrace) => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Text(
+            'Could not load dashboard.\n$error',
+            textAlign: TextAlign.center,
+            style: TextStyle(color: colors.textSecondary),
+          ),
+        ),
       ),
-      body: SafeArea(
-        child: dashboardAsync.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stackTrace) => Center(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Text(
-                'Could not load dashboard.\n$error',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: colors.textSecondary),
-              ),
+      data: (dashboard) => RefreshIndicator(
+        onRefresh: () => ref.refresh(dashboardProvider.future),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+          children: [
+            DashboardAppBar(managerName: dashboard.managerName),
+            const SizedBox(height: 16),
+            ManagerBannerCard(
+              managerName: dashboard.managerName,
+              lastSyncedAt: dashboard.lastSyncedAt,
+              isOnline: dashboard.isOnline,
             ),
-          ),
-          data: (dashboard) => RefreshIndicator(
-            onRefresh: () => ref.refresh(dashboardProvider.future),
-            child: ListView(
-              padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
-              children: [
-                DashboardAppBar(managerName: dashboard.managerName),
-                const SizedBox(height: 16),
-                ManagerBannerCard(
-                  managerName: dashboard.managerName,
-                  lastSyncedAt: dashboard.lastSyncedAt,
-                  isOnline: dashboard.isOnline,
-                ),
-                const SizedBox(height: 14),
-                LowStockNoticeBar(
-                  itemCount: dashboard.lowStockItems.length,
-                  onViewTap: () =>
-                      setState(() => _navIndex = 1), // jump to Stock tab
-                ),
-                const SizedBox(height: 16),
-                StatsGrid(dashboard: dashboard),
-                // const SizedBox(height: 16),
-                // SalesTrendCard(points: dashboard.salesTrend),
-                // const SizedBox(height: 16),
-                // LowStockAlertCard(items: dashboard.lowStockItems),
-                // const SizedBox(height: 16),
-                // const QuickActionsCard(),
-              ],
+            const SizedBox(height: 14),
+            LowStockNoticeBar(
+              itemCount: dashboard.lowStockItems.length,
+              onViewTap: onViewLowStock,
             ),
-          ),
+            const SizedBox(height: 16),
+            StatsGrid(dashboard: dashboard),
+            const SizedBox(height: 16),
+            SalesTrendCard(points: dashboard.salesTrend),
+            const SizedBox(height: 16),
+            LowStockAlertCard(items: dashboard.lowStockItems),
+            const SizedBox(height: 16),
+            const QuickActionsCard(),
+          ],
         ),
       ),
     );
