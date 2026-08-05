@@ -15,10 +15,12 @@ class ManagerDashboardScreen extends ConsumerStatefulWidget {
   const ManagerDashboardScreen({super.key});
 
   @override
-  ConsumerState<ManagerDashboardScreen> createState() => _ManagerDashboardScreenState();
+  ConsumerState<ManagerDashboardScreen> createState() =>
+      _ManagerDashboardScreenState();
 }
 
-class _ManagerDashboardScreenState extends ConsumerState<ManagerDashboardScreen> {
+class _ManagerDashboardScreenState
+    extends ConsumerState<ManagerDashboardScreen> {
   int _navIndex = 0;
 
   @override
@@ -34,7 +36,7 @@ class _ManagerDashboardScreenState extends ConsumerState<ManagerDashboardScreen>
       backgroundColor: colors.background,
       bottomNavigationBar: AppBottomNavBar(
         currentIndex: _navIndex,
-        onTap: (index) => setState(() => _navIndex = index),
+        onTap: (index) => setState(() => _navIndex = index, ),
       ),
       body: SafeArea(
         child: dashboardAsync.when(
@@ -64,16 +66,17 @@ class _ManagerDashboardScreenState extends ConsumerState<ManagerDashboardScreen>
                 const SizedBox(height: 14),
                 LowStockNoticeBar(
                   itemCount: dashboard.lowStockItems.length,
-                  onViewTap: () => setState(() => _navIndex = 1), // jump to Stock tab
+                  onViewTap: () =>
+                      setState(() => _navIndex = 1), // jump to Stock tab
                 ),
                 const SizedBox(height: 16),
                 StatsGrid(dashboard: dashboard),
-                const SizedBox(height: 16),
-                SalesTrendCard(points: dashboard.salesTrend),
-                const SizedBox(height: 16),
-                LowStockAlertCard(items: dashboard.lowStockItems),
-                const SizedBox(height: 16),
-                const QuickActionsCard(),
+                // const SizedBox(height: 16),
+                // SalesTrendCard(points: dashboard.salesTrend),
+                // const SizedBox(height: 16),
+                // LowStockAlertCard(items: dashboard.lowStockItems),
+                // const SizedBox(height: 16),
+                // const QuickActionsCard(),
               ],
             ),
           ),

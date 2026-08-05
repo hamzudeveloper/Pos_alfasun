@@ -39,7 +39,7 @@ class ManagerBannerCard extends StatelessWidget {
               Text(
                 'MANAGER DASHBOARD',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.85),
+                  color: Color(0xFF4ADE80),
                   fontSize: 11,
                   fontWeight: FontWeight.w600,
                   letterSpacing: 1,
@@ -51,10 +51,16 @@ class ManagerBannerCard extends StatelessWidget {
                     Container(
                       width: 7,
                       height: 7,
-                      decoration: const BoxDecoration(color: Color(0xFF4ADE80), shape: BoxShape.circle),
+                      decoration: const BoxDecoration(
+                        color: Color(0xFF4ADE80),
+                        shape: BoxShape.circle,
+                      ),
                     ),
                     const SizedBox(width: 5),
-                    const Text('Online', style: TextStyle(color: Colors.white, fontSize: 11)),
+                    const Text(
+                      'Online',
+                      style: TextStyle(color: Colors.white, fontSize: 11),
+                    ),
                   ],
                 ),
             ],
@@ -62,17 +68,27 @@ class ManagerBannerCard extends StatelessWidget {
           const SizedBox(height: 10),
           Text(
             '${DateFormatter.greeting(now)}, $managerName',
-            style: const TextStyle(color: Colors.white, fontSize: 19, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 4),
           Text(
             DateFormatter.full(now),
-            style: TextStyle(color: Colors.white.withOpacity(0.85), fontSize: 12),
+            style: TextStyle(
+              color: Colors.white.withValues(alpha: 0.85),
+              fontSize: 12,
+            ),
           ),
           const SizedBox(height: 10),
           Text(
             'Last sync: ${DateFormatter.time(lastSyncedAt)}',
-            style: TextStyle(color: Colors.white.withOpacity(0.7), fontSize: 11),
+            style: TextStyle(
+              color: Colors.white.withValues(alpha: 0.7),
+              fontSize: 11,
+            ),
           ),
         ],
       ),

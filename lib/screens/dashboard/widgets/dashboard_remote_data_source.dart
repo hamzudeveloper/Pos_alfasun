@@ -10,7 +10,7 @@ class DashboardRemoteDataSource {
     await Future.delayed(const Duration(milliseconds: 600)); // simulate network delay
 
     return {
-      'managerName': 'Juan',
+      'managerName': 'Hamzu',
       'lastSyncedAt': DateTime.now().toIso8601String(),
       'isOnline': true,
       'totalSales': {'value': 86240.0, 'changePercent': 12.5},
