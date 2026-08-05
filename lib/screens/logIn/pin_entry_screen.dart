@@ -1,3 +1,4 @@
+import 'package:alfasun_pos/screens/shell_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/auth_providers.dart';
@@ -43,7 +44,7 @@ class PinEntryScreen extends ConsumerWidget {
 
     if (pin == demoPin) {
      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const dashboard()),
+        MaterialPageRoute(builder: (_) => const MainShellScreen()),
       );
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Logged in as ${_roleLabel(role)} ✅')),
