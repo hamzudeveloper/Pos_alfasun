@@ -60,7 +60,7 @@ class DashboardAppBar extends ConsumerWidget {
           icon: Icons.notifications_none_rounded,
           badgeCount: 100,
           onTap: () {
-            Navigator.pushNamed(context, '/notifications');
+            // Navigator.pushNamed(context, '/notifications');
           },
         ),
         const SizedBox(width: 8),

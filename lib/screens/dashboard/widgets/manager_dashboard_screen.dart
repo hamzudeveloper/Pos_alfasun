@@ -41,8 +41,10 @@ class ManagerDashboardScreen extends ConsumerWidget {
         ),
       ),
       data: (dashboard) => RefreshIndicator(
+        
         onRefresh: () => ref.refresh(dashboardProvider.future),
         child: ListView(
+          
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
           children: [
             DashboardAppBar(managerName: dashboard.managerName),

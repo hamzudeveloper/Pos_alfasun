@@ -13,7 +13,7 @@ class DashboardRemoteDataSource {
       'managerName': 'Hamzu',
       'lastSyncedAt': DateTime.now().toIso8601String(),
       'isOnline': true,
-      'totalSales': {'value': 86240.0, 'changePercent': 12.5},
+      'totalSales': {'value': 86240000000000.0, 'changePercent': 12.5},
       'totalProfit': {'value': 24380.0, 'changePercent': 8.2},
       'profitMargin': {'value': 28.3, 'changePercent': -1.4, 'isPercentValue': true},
       'totalOrders': {'value': 1247.0, 'changePercent': 18.9},

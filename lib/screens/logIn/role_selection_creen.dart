@@ -191,7 +191,7 @@ class _LogoBadge extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(18),
-        child: AppImage.asset('assets/profile.jpg', width: 64, height: 64),
+        child: AppImage.asset('assets/alfasun_Logo.jpeg', fit: BoxFit.cover),
       ),
     );
   }
@@ -235,7 +235,11 @@ class _RoleCard extends StatelessWidget {
             const SizedBox(height: 14),
             Text(
               title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+              style: const TextStyle(
+                color: AppColors.textDark,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
             ),
             const SizedBox(height: 2),
             Text(

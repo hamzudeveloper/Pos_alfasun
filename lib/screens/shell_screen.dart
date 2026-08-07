@@ -1,7 +1,8 @@
 import 'package:alfasun_pos/Screens/Alerts/Presentation/alert_screen.dart';
 import 'package:alfasun_pos/Screens/Orders/Presentation/order_screen.dart';
 import 'package:alfasun_pos/Screens/Reports/Presentation/reports_screen.dart';
-import 'package:alfasun_pos/Screens/Stock/Presentation/stock_screen.dart';
+import 'package:alfasun_pos/Screens/Stock/Presentation/inventory_screen.dart';
+// import 'package:alfasun_pos/Screens/Stock/Presentation/stock_screen.dart';
 import 'package:alfasun_pos/Screens/Dashboard/widgets/app_bottom_nav_bar.dart';
 import 'package:alfasun_pos/Screens/Dashboard/widgets/manager_dashboard_screen.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
@@ -35,7 +36,7 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen> {
 
     final tabs = [
       ManagerDashboardScreen(onViewLowStock: () => _goToTab(1)), // Home -> jumps to Stock
-      const StockScreen(title: 'Stock', icon: Icons.inventory_2_outlined),
+      const InventoryScreen(),
       const OrderScreen(title: 'Orders', icon: Icons.receipt_long_outlined),
       const ReportsScreen(title: 'Reports', icon: Icons.bar_chart_rounded),
       const AlertScreen(title: 'Alerts', icon: Icons.notifications_none_rounded),
