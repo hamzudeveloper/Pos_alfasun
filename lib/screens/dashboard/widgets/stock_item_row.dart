@@ -14,7 +14,7 @@ class StockItemRow extends StatelessWidget {
       case StockSeverity.low:
         return colors.warning;
       case StockSeverity.warning:
-        return colors.warning.withOpacity(0.7);
+        return colors.warning.withValues(alpha: 0.7);
     }
   }
 

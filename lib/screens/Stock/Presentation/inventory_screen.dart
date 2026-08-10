@@ -1,4 +1,4 @@
-import 'package:alfasun_pos/Screens/Dashboard/widgets/dashboard_app_bar.dart';
+import 'package:alfasun_pos/Common/dashboard_app_bar.dart';
 import 'package:alfasun_pos/Screens/Stock/Providers/filtered_products_provider.dart';
 import 'package:alfasun_pos/Screens/Stock/Widgets/inventory_search_bar.dart';
 import 'package:alfasun_pos/Screens/Stock/Widgets/product_list_item.dart';
@@ -51,6 +51,7 @@ class InventoryScreen extends ConsumerWidget {
             ),
           ),
           data: (products) => Column(
+           
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(

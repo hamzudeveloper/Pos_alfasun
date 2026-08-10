@@ -1,7 +1,9 @@
-import 'package:alfasun_pos/screens/shell_screen.dart';
+
+import 'package:alfasun_pos/Master/shell_screen.dart';
+import 'package:alfasun_pos/Screens/LogIn/auth_providers.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../providers/auth_providers.dart';
 import '../../theme/app_colors.dart';
 
 class PinEntryScreen extends ConsumerWidget {
@@ -208,22 +210,6 @@ class PinEntryScreen extends ConsumerWidget {
   }
 }
 
-class dashboard extends StatelessWidget {
-  const dashboard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: const Center(
-        child: Text(
-          'Dashboard Screen',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-      )
-    );
-  }
-}
 
 class _KeypadRow extends StatelessWidget {
   final List<String> labels;

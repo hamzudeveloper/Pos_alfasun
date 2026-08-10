@@ -7,7 +7,7 @@ class ProductStatusPill extends StatelessWidget {
 
   const ProductStatusPill({super.key, required this.product});
 
-  Color _colorFor(AppColorScheme colors, StockStatus status) {
+  Color _colorFor(AppColorScheme colors, StockStatus status) { 
     switch (status) {
       case StockStatus.ok:
         return colors.success;

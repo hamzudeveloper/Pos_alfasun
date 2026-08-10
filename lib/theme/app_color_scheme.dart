@@ -24,6 +24,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
   final Color navBackground;
   final Color navSelected;
   final Color navUnselected;
+  final Color stockTxtColorPrimary;
 
   const AppColorScheme({
     required this.background,
@@ -40,7 +41,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
     required this.chartFill,
     required this.navBackground,
     required this.navSelected,
-    required this.navUnselected,
+    required this.navUnselected, required this.stockTxtColorPrimary,
   });
 
   /// Palette matching image 1 & 2 (white background dashboard)
@@ -61,6 +62,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       navBackground: Colors.white,
       navSelected: Color(0xFF8B7CF6),
       navUnselected: Color(0xFFB3B0C2),
+      stockTxtColorPrimary: Color(0xFF1B1330),
     );
   }
 
@@ -72,6 +74,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       surfaceVariant: Color(0xFF262138),
       primary: Color(0xFFA79BFA),
       textPrimary: Colors.white,
+
       textSecondary: Color(0xFF8D8AA3),
       success: Color(0xFF4ADE80),
       danger: Color(0xFFF87171),
@@ -82,6 +85,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       navBackground: Color(0xFF1D1930),
       navSelected: Color(0xFFA79BFA),
       navUnselected: Color(0xFF5C5875),
+      stockTxtColorPrimary: Colors.white,
     );
   }
 
@@ -102,6 +106,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
     Color? navBackground,
     Color? navSelected,
     Color? navUnselected,
+    Color? stockTxtColorPrimary,
   }) {
     return AppColorScheme(
       background: background ?? this.background,
@@ -118,7 +123,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       chartFill: chartFill ?? this.chartFill,
       navBackground: navBackground ?? this.navBackground,
       navSelected: navSelected ?? this.navSelected,
-      navUnselected: navUnselected ?? this.navUnselected,
+      navUnselected: navUnselected ?? this.navUnselected, stockTxtColorPrimary: stockTxtColorPrimary ?? this.stockTxtColorPrimary,
     );
   }
 
@@ -141,6 +146,7 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
       navBackground: Color.lerp(navBackground, other.navBackground, t)!,
       navSelected: Color.lerp(navSelected, other.navSelected, t)!,
       navUnselected: Color.lerp(navUnselected, other.navUnselected, t)!,
+      stockTxtColorPrimary: Color.lerp(stockTxtColorPrimary, other.stockTxtColorPrimary, t)!,
     );
   }
 }

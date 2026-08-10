@@ -12,13 +12,17 @@ class StatsGrid extends StatelessWidget {
   String _rupees(double value) {
     // Simple thousands separator, e.g. 86240 -> "86,240"
     final rounded = value.round().toString();
-    final buffer = StringBuffer();
+    final buffer =
+        StringBuffer(); // Use StringBuffer for efficient string concatenation
     for (int i = 0; i < rounded.length; i++) {
+      // Loop through each character in the rounded string
       final posFromEnd = rounded.length - i;
-      buffer.write(rounded[i]);
+      // Add the current digit to the buffer
+      buffer.write(rounded[i]); // Write the current character to the buffer
       if (posFromEnd > 1 && posFromEnd % 3 == 1) buffer.write(',');
     }
-    return 'Rs $buffer';
+    // Add a comma after every 3 digits, except for the last group
+    return '$buffer';
   }
 
   String _plainNumber(double value) {

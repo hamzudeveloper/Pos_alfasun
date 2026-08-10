@@ -33,4 +33,14 @@ class DateFormatter {
     if (date.hour < 17) return 'Good afternoon';
     return 'Good evening';
   }
+
+  /// e.g. "3 hrs ago", "Yesterday", "5 days ago"
+  static String timeAgo(DateTime date) {
+    final diff = DateTime.now().difference(date);
+    if (diff.inMinutes < 1) return 'Just now';
+    if (diff.inMinutes < 60) return '${diff.inMinutes} min ago';
+    if (diff.inHours < 24) return '${diff.inHours} hr${diff.inHours == 1 ? '' : 's'} ago';
+    if (diff.inDays == 1) return 'Yesterday';
+    return '${diff.inDays} days ago';
+  }
 }

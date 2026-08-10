@@ -1,6 +1,7 @@
+import 'package:alfasun_pos/Common/date_formatter.dart';
+import 'package:alfasun_pos/Screens/Alerts/Presentation/notifications_screen.dart';
+import 'package:alfasun_pos/Screens/Alerts/Providers/notification_derived_providers.dart';
 import 'package:alfasun_pos/providers/theme_mode_provider.dart';
-import 'package:alfasun_pos/screens/dashboard/widgets/app_image.dart';
-import 'package:alfasun_pos/screens/dashboard/widgets/date_formatter.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,7 @@ class DashboardAppBar extends ConsumerWidget {
     final colors = context.appColors;
     final isDark = ref.watch(themeModeProvider) == ThemeMode.dark;
     final now = DateTime.now();
+    final unreadCount = ref.watch(unreadNotificationCountProvider);
 
     return Row(
       children: [
@@ -58,9 +60,14 @@ class DashboardAppBar extends ConsumerWidget {
         const SizedBox(width: 8),
         _CircleIconButton(
           icon: Icons.notifications_none_rounded,
-          badgeCount: 100,
+          badgeCount: unreadCount,
           onTap: () {
-            // Navigator.pushNamed(context, '/notifications');
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NotificationsScreen(),
+              ),
+            );
           },
         ),
         const SizedBox(width: 8),
@@ -101,7 +108,7 @@ class _CircleIconButton extends StatelessWidget {
             width: 34,
             height: 34,
             decoration: BoxDecoration(
-              color: colors.surfaceVariant,
+              color: colors.surface,
               shape: BoxShape.circle,
             ),
             child: Icon(icon, size: 17, color: colors.textPrimary),

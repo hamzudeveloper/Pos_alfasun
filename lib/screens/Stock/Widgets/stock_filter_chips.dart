@@ -23,7 +23,7 @@ class StockFilterChips extends ConsumerWidget {
               duration: const Duration(milliseconds: 150),
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
               decoration: BoxDecoration(
-                color: isSelected ? colors.primary : colors.surfaceVariant,
+                color: isSelected ? colors.primary : colors.surface,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Text(

@@ -1,7 +1,6 @@
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 
-
 class LowStockNoticeBar extends StatelessWidget {
   final int itemCount;
   final VoidCallback? onViewTap;
@@ -29,15 +28,30 @@ class LowStockNoticeBar extends StatelessWidget {
           Expanded(
             child: Text(
               '$itemCount items low in stock',
-              style: TextStyle(color: colors.textPrimary, fontSize: 13, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                color: colors.warning,
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
             ),
           ),
           GestureDetector(
             onTap: onViewTap,
             child: Row(
               children: [
-                Text('View', style: TextStyle(color: colors.warning, fontSize: 13, fontWeight: FontWeight.w600)),
-                Icon(Icons.arrow_forward_rounded, color: colors.warning, size: 14),
+                Text(
+                  'View',
+                  style: TextStyle(
+                    color: colors.warning,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Icon(
+                  Icons.arrow_forward_rounded,
+                  color: colors.warning,
+                  size: 14,
+                ),
               ],
             ),
           ),

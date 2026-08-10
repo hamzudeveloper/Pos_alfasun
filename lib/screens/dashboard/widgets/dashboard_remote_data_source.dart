@@ -1,5 +1,3 @@
-
-
 import 'package:alfasun_pos/screens/dashboard/widgets/sales_trend_range.dart';
 
 /// Stands in for a real API call for now. Swap the body of [fetchDashboardJson]
@@ -7,15 +5,21 @@ import 'package:alfasun_pos/screens/dashboard/widgets/sales_trend_range.dart';
 /// because the repository only talks to this class through its method signature.
 class DashboardRemoteDataSource {
   Future<Map<String, dynamic>> fetchDashboardJson(SalesTrendRange range) async {
-    await Future.delayed(const Duration(milliseconds: 600)); // simulate network delay
+    await Future.delayed(
+      const Duration(milliseconds: 600),
+    ); // simulate network delay
 
     return {
       'managerName': 'Hamzu',
       'lastSyncedAt': DateTime.now().toIso8601String(),
       'isOnline': true,
-      'totalSales': {'value': 86240000000000.0, 'changePercent': 12.5},
+      'totalSales': {'value': 8624.0, 'changePercent': 12.5},
       'totalProfit': {'value': 24380.0, 'changePercent': 8.2},
-      'profitMargin': {'value': 28.3, 'changePercent': -1.4, 'isPercentValue': true},
+      'profitMargin': {
+        'value': 28.3,
+        'changePercent': -1.4,
+        'isPercentValue': true,
+      },
       'totalOrders': {'value': 1247.0, 'changePercent': 18.9},
       'salesTrend': _salesTrendFor(range),
       'lowStockItems': [

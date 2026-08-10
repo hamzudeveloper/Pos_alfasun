@@ -6,8 +6,7 @@ import 'sales_trend_range_provider.dart';
 
 /// FutureProvider is the right tool here (instead of StateNotifier) because
 /// all we're doing is "fetch async data and expose loading/error/success" —
-/// FutureProvider gives you that for free as an AsyncValue<DashboardEntity>.
-///
+// / FutureProvider gives you that for free as an AsyncValue<DashboardEntity>. 
 /// Because this provider does `ref.watch(salesTrendRangeProvider)`, Riverpod
 /// automatically re-runs this whole function — and refetches — whenever the
 /// user taps Today/Week/Month. You never manually call "refresh" yourself.

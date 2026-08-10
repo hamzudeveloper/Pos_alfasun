@@ -1,16 +1,21 @@
+import 'package:alfasun_pos/Screens/Alerts/Providers/notification_derived_providers.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
-class AppBottomNavBar extends StatelessWidget {
+/// Lives in the shell feature (not dashboard) because it's owned by
+/// MainShellScreen, not any one tab. It watches unreadNotificationCountProvider
+/// directly, so the Alerts badge updates the instant a notification is
+/// read/deleted — no matter which tab you're currently looking at.
+class AppBottomNavBar extends ConsumerWidget {
   final int currentIndex;
   final ValueChanged<int> onTap;
-
 
   const AppBottomNavBar({super.key, required this.currentIndex, required this.onTap});
 
   static const _items = [
-    (icon: Icons.home_rounded, label: 'Home', ),
+    (icon: Icons.home_rounded, label: 'Home'),
     (icon: Icons.inventory_2_outlined, label: 'Stock'),
     (icon: Icons.receipt_long_outlined, label: 'Orders'),
     (icon: Icons.bar_chart_rounded, label: 'Reports'),
@@ -18,14 +23,15 @@ class AppBottomNavBar extends StatelessWidget {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final colors = context.appColors;
+    final unreadCount = ref.watch(unreadNotificationCountProvider);
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: colors.navBackground,
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 12, offset: const Offset(0, -2))],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 12, offset: const Offset(0, -2))],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -47,14 +53,19 @@ class AppBottomNavBar extends StatelessWidget {
                     clipBehavior: Clip.none,
                     children: [
                       Icon(item.icon, color: color, size: 22),
-                      if (isAlerts)
+                      if (isAlerts && unreadCount > 0)
                         Positioned(
-                          right: -4,
+                          right: -6,
                           top: -4,
                           child: Container(
-                            width: 8,
-                            height: 8,
-                            decoration: BoxDecoration(color: colors.danger, shape: BoxShape.circle),
+                            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                            constraints: const BoxConstraints(minWidth: 14),
+                            decoration: BoxDecoration(color: colors.danger, borderRadius: BorderRadius.circular(8)),
+                            child: Text(
+                              '$unreadCount',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(color: Colors.white, fontSize: 9, fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                     ],

@@ -2,7 +2,7 @@ import 'package:alfasun_pos/providers/dashboard_provider.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../widgets/dashboard_app_bar.dart';
+import '../../../Common/dashboard_app_bar.dart';
 import '../widgets/low_stock_alert_card.dart';
 import '../widgets/low_stock_notice_bar.dart';
 import '../widgets/manager_banner_card.dart';

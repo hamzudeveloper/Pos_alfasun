@@ -30,5 +30,9 @@ class AppTextStyle {
     letterSpacing: 1.2,
   );
 
-  
+  static const TextStyle numbers = TextStyle(
+    // color: AppColors.textWhite,
+    fontSize: 12,
+    letterSpacing: 0.8,
+  );
 }

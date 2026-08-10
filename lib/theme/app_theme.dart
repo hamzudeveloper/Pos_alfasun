@@ -23,6 +23,7 @@ class AppTheme {
       useMaterial3: true,
       brightness: Brightness.dark,
       scaffoldBackgroundColor: colors.background,
+      
       extensions: [colors],
     );
   }

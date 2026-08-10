@@ -22,7 +22,9 @@ class _InventorySearchBarState extends ConsumerState<InventorySearchBar> {
     // Seed the field with whatever's already in the provider, in case this
     // widget rebuilds fresh (e.g. coming back to the Stock tab) while a
     // search is still active.
-    _controller = TextEditingController(text: ref.read(stockSearchQueryProvider));
+    _controller = TextEditingController(
+      text: ref.read(stockSearchQueryProvider),
+    );
     // Rebuilds just this widget when the text changes, so the clear (X)
     // button can show/hide — it does NOT touch the provider by itself.
     _controller.addListener(() => setState(() {}));
@@ -35,6 +37,8 @@ class _InventorySearchBarState extends ConsumerState<InventorySearchBar> {
   }
 
   void _onChanged(String value) {
+    print("value $value");
+    print("callingiiiiiiii");
     ref.read(stockSearchQueryProvider.notifier).state = value;
   }
 
@@ -45,12 +49,13 @@ class _InventorySearchBarState extends ConsumerState<InventorySearchBar> {
 
   @override
   Widget build(BuildContext context) {
+    print("hsifkdfksfdkfsdk");
     final colors = context.appColors;
     final hasText = _controller.text.isNotEmpty;
 
     return Container(
       decoration: BoxDecoration(
-        color: colors.surfaceVariant,
+        color: colors.surface,
         borderRadius: BorderRadius.circular(14),
       ),
       child: TextField(
@@ -61,10 +66,18 @@ class _InventorySearchBarState extends ConsumerState<InventorySearchBar> {
         decoration: InputDecoration(
           hintText: 'Search products or categories...',
           hintStyle: TextStyle(color: colors.textSecondary, fontSize: 13),
-          prefixIcon: Icon(Icons.search_rounded, color: colors.textSecondary, size: 20),
+          prefixIcon: Icon(
+            Icons.search_rounded,
+            color: colors.textSecondary,
+            size: 20,
+          ),
           suffixIcon: hasText
               ? IconButton(
-                  icon: Icon(Icons.close_rounded, color: colors.textSecondary, size: 18),
+                  icon: Icon(
+                    Icons.close_rounded,
+                    color: colors.textSecondary,
+                    size: 18,
+                  ),
                   onPressed: _clear,
                 )
               : null,

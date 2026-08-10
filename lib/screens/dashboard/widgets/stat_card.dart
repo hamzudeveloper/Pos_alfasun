@@ -1,7 +1,7 @@
 import 'package:alfasun_pos/screens/dashboard/widgets/dashboard_entity.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
+import 'package:alfasun_pos/theme/app_text_style.dart';
 import 'package:flutter/material.dart';
-
 
 /// One card in the 2x2 stats grid. Fed a generic StatEntity + icon/label,
 /// so the SAME widget renders Total Sales, Total Profit, Profit Margin, and
@@ -41,9 +41,9 @@ class StatCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
-                  color: iconColor.withOpacity(0.12),
+                  color: iconColor.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Icon(icon, color: iconColor, size: 16),
@@ -51,20 +51,26 @@ class StatCard extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
                 decoration: BoxDecoration(
-                  color: changeColor.withOpacity(0.12),
+                  color: changeColor.withValues(alpha: 0.12),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
-                      stat.isPositive ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded,
+                      stat.isPositive
+                          ? Icons.arrow_upward_rounded
+                          : Icons.arrow_downward_rounded,
                       size: 10,
                       color: changeColor,
                     ),
                     Text(
                       '${stat.changePercent.abs().toStringAsFixed(1)}%',
-                      style: TextStyle(color: changeColor, fontSize: 10, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                        color: changeColor,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ],
                 ),
@@ -74,10 +80,13 @@ class StatCard extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             valueFormatter(stat.value),
-            style: TextStyle(color: colors.textPrimary, fontSize: 18, fontWeight: FontWeight.bold),
+            style: AppTextStyle.numbers.copyWith(color: colors.textPrimary),
           ),
           const SizedBox(height: 2),
-          Text(label, style: TextStyle(color: colors.textSecondary, fontSize: 11)),
+          Text(
+            label,
+            style: TextStyle(color: colors.textSecondary, fontSize: 11),
+          ),
         ],
       ),
     );
