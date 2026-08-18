@@ -1,5 +1,5 @@
+import 'package:alfasun_pos/Screens/StoreCode/Presentation/store_code_screen.dart';
 import 'package:alfasun_pos/providers/theme_mode_provider.dart';
-import 'package:alfasun_pos/screens/LogIn/role_selection_creen.dart';
 import 'package:alfasun_pos/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +21,7 @@ class MyApp extends ConsumerWidget {
       theme: AppTheme.light,
       darkTheme: AppTheme.dark,
       themeMode: themeMode,
-      home: const RoleSelectionScreen(),
+      home: StoreCodeScreen(),
     );
   }
 }

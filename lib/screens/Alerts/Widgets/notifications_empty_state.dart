@@ -18,7 +18,7 @@ class NotificationsEmptyState extends StatelessWidget {
           Container(
             width: 72,
             height: 72,
-            decoration: BoxDecoration(color: colors.primary.withOpacity(0.1), shape: BoxShape.circle),
+            decoration: BoxDecoration(color: colors.primary.withValues(alpha: 0.1), shape: BoxShape.circle),
             child: Icon(
               isUnreadTab ? Icons.done_all_rounded : Icons.notifications_none_rounded,
               size: 32,

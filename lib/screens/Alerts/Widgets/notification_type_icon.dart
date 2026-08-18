@@ -28,7 +28,7 @@ class NotificationTypeIcon extends StatelessWidget {
     return Container(
       width: 38,
       height: 38,
-      decoration: BoxDecoration(color: color.withOpacity(0.12), borderRadius: BorderRadius.circular(11)),
+      decoration: BoxDecoration(color: color.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(11)),
       child: Icon(icon, color: color, size: 18),
     );
   }

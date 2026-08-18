@@ -1,6 +1,7 @@
 import 'package:alfasun_pos/Common/date_formatter.dart';
 import 'package:alfasun_pos/Screens/Alerts/Presentation/notifications_screen.dart';
 import 'package:alfasun_pos/Screens/Alerts/Providers/notification_derived_providers.dart';
+import 'package:alfasun_pos/Screens/Profile/Widgets/profile_menu_button.dart';
 import 'package:alfasun_pos/providers/theme_mode_provider.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
@@ -71,18 +72,7 @@ class DashboardAppBar extends ConsumerWidget {
           },
         ),
         const SizedBox(width: 8),
-        CircleAvatar(
-          radius: 17,
-          backgroundColor: colors.primary,
-          child: Text(
-            managerName.isNotEmpty ? managerName[0].toUpperCase() : '',
-            style: const TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-        ),
+        ProfileMenuButton(),
       ],
     );
   }

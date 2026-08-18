@@ -15,10 +15,14 @@ class StockFilterChips extends ConsumerWidget {
     return Row(
       children: StockFilter.values.map((filter) {
         final isSelected = filter == selected;
+        print("filter $filter");
+        print("isSelected: $isSelected");
+        print('Selected: $selected');
         return Padding(
           padding: const EdgeInsets.only(right: 8),
           child: GestureDetector(
             onTap: () => ref.read(stockFilterProvider.notifier).state = filter,
+
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 150),
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),

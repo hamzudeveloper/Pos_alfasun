@@ -15,23 +15,32 @@ class PurchaseFilterChips extends ConsumerWidget {
     return Row(
       children: PurchaseFilter.values.map((filter) {
         final isSelected = filter == selected;
-        return Padding(
-          padding: const EdgeInsets.only(right: 8),
-          child: GestureDetector(
-            onTap: () =>
-                ref.read(purchaseFilterProvider.notifier).state = filter,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
-              decoration: BoxDecoration(
-                color: isSelected ? colors.primary : colors.surface,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Text(
-                filter.label,
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  color: isSelected ? Colors.white : colors.textSecondary,
+        final flex = filter.label.isEmpty ? 1 : filter.label.length;
+        return Expanded(
+          flex: flex,
+          child: Padding(
+            padding: const EdgeInsets.only(right: 4),
+            child: GestureDetector(
+              onTap: () =>
+                  ref.read(purchaseFilterProvider.notifier).state = filter,
+              child: Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 9,
+                ),
+                decoration: BoxDecoration(
+                  color: isSelected ? colors.primary : colors.surface,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Text(
+                  filter.label,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: isSelected ? Colors.white : colors.textSecondary,
+                  ),
                 ),
               ),
             ),

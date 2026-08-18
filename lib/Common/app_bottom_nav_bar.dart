@@ -31,7 +31,7 @@ class AppBottomNavBar extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(vertical: 10),
       decoration: BoxDecoration(
         color: colors.navBackground,
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 12, offset: const Offset(0, -2))],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 12, offset: const Offset(0, -2))],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

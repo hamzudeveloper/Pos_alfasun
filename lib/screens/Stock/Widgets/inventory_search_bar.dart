@@ -25,9 +25,9 @@ class _InventorySearchBarState extends ConsumerState<InventorySearchBar> {
     _controller = TextEditingController(
       text: ref.read(stockSearchQueryProvider),
     );
-    // Rebuilds just this widget when the text changes, so the clear (X)
-    // button can show/hide — it does NOT touch the provider by itself.
-    _controller.addListener(() => setState(() {}));
+    // Don't call setState from the controller listener; we'll update the
+    // clear button using ValueListenableBuilder in build() so typing does
+    // not force a full widget rebuild via setState.
   }
 
   @override
@@ -44,11 +44,23 @@ class _InventorySearchBarState extends ConsumerState<InventorySearchBar> {
 
   void _clear() {
     _controller.clear();
+    print("printing from clear");
     ref.read(stockSearchQueryProvider.notifier).state = '';
   }
 
   @override
   Widget build(BuildContext context) {
+    final query = ref.watch(stockSearchQueryProvider);
+    if (_controller.text != query) {
+      _controller.value = _controller.value.copyWith(
+        text: query,
+
+        selection: TextSelection.collapsed(offset: query.length),
+      );
+    }
+    print("provider ${stockSearchQueryProvider.toString()}");
+    print('querry: $query');
+    print('controller: ${_controller.text}');
     print("hsifkdfksfdkfsdk");
     final colors = context.appColors;
     final hasText = _controller.text.isNotEmpty;

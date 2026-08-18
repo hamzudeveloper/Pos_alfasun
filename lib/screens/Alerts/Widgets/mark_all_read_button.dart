@@ -23,7 +23,7 @@ class MarkAllReadButton extends ConsumerWidget {
         style: TextStyle(
           fontSize: 12.5,
           fontWeight: FontWeight.w600,
-          color: hasUnread ? colors.primary : colors.textSecondary.withOpacity(0.5),
+          color: hasUnread ? colors.primary : colors.textSecondary.withValues(alpha: 0.5),
         ),
       ),
     );

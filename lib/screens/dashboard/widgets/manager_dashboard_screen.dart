@@ -1,3 +1,4 @@
+import 'package:alfasun_pos/Screens/DummyForAPI/data_model.dart';
 import 'package:alfasun_pos/providers/dashboard_provider.dart';
 import 'package:alfasun_pos/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,13 @@ import '../widgets/stats_grid.dart';
 /// tab — without this widget needing to know about tab indices itself.
 class ManagerDashboardScreen extends ConsumerWidget {
   final VoidCallback? onViewLowStock;
+  final LoginData loginData;
 
-  const ManagerDashboardScreen({super.key, this.onViewLowStock});
+  const ManagerDashboardScreen({
+    super.key,
+    this.onViewLowStock,
+    required this.loginData,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,10 +47,8 @@ class ManagerDashboardScreen extends ConsumerWidget {
         ),
       ),
       data: (dashboard) => RefreshIndicator(
-        
         onRefresh: () => ref.refresh(dashboardProvider.future),
         child: ListView(
-          
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
           children: [
             DashboardAppBar(managerName: dashboard.managerName),

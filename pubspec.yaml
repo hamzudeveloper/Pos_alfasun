@@ -17,6 +17,7 @@ dependencies:
   flutter_riverpod: ^2.5.1
   fl_chart: ^0.68.0
   riverpod_annotation: 
+  http: ^1.6.0
 
 
 

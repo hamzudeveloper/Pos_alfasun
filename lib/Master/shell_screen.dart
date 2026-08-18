@@ -1,6 +1,6 @@
-
 import 'package:alfasun_pos/Common/app_bottom_nav_bar.dart';
 import 'package:alfasun_pos/Screens/Alerts/Presentation/notifications_screen.dart';
+import 'package:alfasun_pos/Screens/DummyForAPI/data_model.dart';
 import 'package:alfasun_pos/Screens/Orders/Presentation/purchases_screen.dart';
 import 'package:alfasun_pos/Screens/Reports/Presentation/reports_screen.dart';
 import 'package:alfasun_pos/Screens/Stock/Presentation/inventory_screen.dart';
@@ -20,7 +20,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 /// in memory even when it's not visible — so scrolling position, provider
 /// state, etc. on the Home tab isn't lost when you go check Stock and come back.
 class MainShellScreen extends ConsumerStatefulWidget {
-  const MainShellScreen({super.key});
+  const MainShellScreen({super.key, required this.loginData});
+  final LoginData loginData;
 
   @override
   ConsumerState<MainShellScreen> createState() => _MainShellScreenState();
@@ -36,7 +37,10 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen> {
     final colors = context.appColors;
 
     final tabs = [
-      ManagerDashboardScreen(onViewLowStock: () => _goToTab(1)), // Home -> jumps to Stock
+      ManagerDashboardScreen(
+        onViewLowStock: () => _goToTab(1),
+        loginData: widget.loginData,
+      ), // Home -> jumps to Stock
       const InventoryScreen(),
       const PurchasesScreen(),
       const ReportsScreen(),
@@ -50,10 +54,7 @@ class _MainShellScreenState extends ConsumerState<MainShellScreen> {
         onTap: _goToTab,
       ),
       body: SafeArea(
-        child: IndexedStack(
-          index: _navIndex,
-          children: tabs,
-        ),
+        child: IndexedStack(index: _navIndex, children: tabs),
       ),
     );
   }

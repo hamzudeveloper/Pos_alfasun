@@ -58,7 +58,7 @@ class _TabButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: isSelected ? colors.surface : Colors.transparent,
           borderRadius: BorderRadius.circular(9),
-          boxShadow: isSelected ? [BoxShadow(color: Colors.black.withOpacity(0.06), blurRadius: 6)] : null,
+          boxShadow: isSelected ? [BoxShadow(color: Colors.black.withValues(alpha: 0.06), blurRadius: 6)] : null,
         ),
         alignment: Alignment.center,
         child: Text(
